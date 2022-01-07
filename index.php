@@ -1,30 +1,31 @@
 <?php
+
+$log = 'access.log';
+
 $params = require __DIR__ . '/params.php';
 
-$urls = array();
+$urls = [];
 
-$traffic = 0;
+$traffic;
 
-$crawlers = array();
+$crawlers = [];
 
-$codes = array();
+$codes = [];
 
-$crawlersResult = array();
+$crawlersResult = [];
 
-$codeResult = array();
+$codeResult = [];
 
 $pattern = $params['pattern'];
 
 $systems = $params['bots'];
 
-// Подключаем файл
-$log = 'access.log';
-
 // Делим на строки
 $lines = file($log);
 
 foreach ($lines as $line) {
-
+    
+    // Строку в массив
     $elem =  preg_match($pattern, $line, $matches);
 
     // Если есть еще не встречающиеся url пишем их в массив
